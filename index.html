@@ -1,0 +1,1328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandeep Chaurasiya - One Page Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Variables for easy theming */
+        :root {
+            --primary-color: #007bff; /* Original Blue */
+            --secondary-color: #6c757d; /* Grey */
+            --accent-color: #28a745; /* Original Green */
+            --text-color-dark: #343a40; /* Dark Grey */
+            --text-color-light: #f8f9fa; /* Off-white */
+            --bg-color-light: #ffffff;
+            --bg-color-dark: #f0f2f5;
+
+            /* NEW: Additional Colors for 3D/Vibrancy */
+            --gradient-start: #6dd5ed; /* Lighter Blue */
+            --gradient-middle: #2193b0; /* Mid Blue */
+            --gradient-end: #007bff;   /* Primary Blue */
+            --warm-accent: #ff7e5f;    /* Warm Orange */
+            --cool-accent: #b2cbe0;    /* Muted Blue */
+            --shadow-strong: rgba(0, 0, 0, 0.25);
+            --shadow-light: rgba(0, 0, 0, 0.1);
+
+
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Poppins', sans-serif;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 15px var(--shadow-light);
+            --transition-speed: 0.3s ease-in-out;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            line-height: 1.6;
+            color: var(--text-color-dark);
+            background-color: var(--bg-color-light);
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color var(--transition-speed);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            color: var(--text-color-dark);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--primary-color);
+            text-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* **NEW: Section Title Glow** */
+            transition: text-shadow 0.3s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: background-color var(--transition-speed), transform 0.2s ease-out, box-shadow var(--transition-speed);
+            border: none;
+            cursor: pointer;
+            position: relative; /* For button press effect */
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        /* **NEW: Button Press Effect (on active/click)** */
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* Header */
+        .header {
+            background-color: var(--bg-color-light);
+            box-shadow: var(--box-shadow);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            transition: color 0.4s ease;
+        }
+        .header.scrolled .logo {
+             color: var(--accent-color);
+        }
+
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color-dark);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color var(--transition-speed);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            left: 0;
+            bottom: 0;
+            transition: width var(--transition-speed), background-color 0.4s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .header.scrolled .nav-links a {
+            color: #555;
+        }
+        .header.scrolled .nav-links a.active::after {
+            background-color: var(--primary-color);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            height: 3px;
+            width: 25px;
+            background-color: var(--text-color-dark);
+            margin-bottom: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 80px 20px;
+            /* **NEW: Complex Linear Gradient Background** */
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+            color: var(--text-color-light); /* Ensure text is readable on gradient */
+            gap: 40px;
+            flex-wrap: wrap;
+            position: relative; /* For background overlay */
+            overflow: hidden;
+        }
+
+        /* **NEW: Subtle Hero Section Pattern/Overlay for depth** */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(0,0,0,0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+            position: relative; /* Ensure content is above ::before */
+            z-index: 1;
+        }
+
+        .hero-intro {
+            font-size: 1.5rem;
+            color: var(--text-color-light); /* Adjusted for dark gradient */
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-color-light); /* Adjusted for dark gradient */
+            text-shadow: 2px 2px 5px var(--shadow-strong); /* **NEW: Text Shadow for Depth** */
+        }
+
+        .hero-tagline {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--text-color-light); /* Adjusted for dark gradient */
+            min-height: 50px;
+        }
+
+        .typed-text {
+            font-weight: 600;
+            color: var(--warm-accent); /* **NEW: Typed Text Color** */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .cursor {
+            display: inline-block;
+            background-color: var(--text-color-light); /* Adjusted for dark gradient */
+            width: 3px;
+            height: 2.2rem;
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            position: relative; /* Ensure content is above ::before */
+            z-index: 1;
+        }
+
+        .hero-image img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px var(--shadow-strong); /* **NEW: Stronger Shadow for Depth** */
+            border: 5px solid var(--accent-color); /* Used accent for contrast */
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: var(--text-color-light); /* Adjusted for dark gradient */
+            transition: color var(--transition-speed), transform 0.2s ease-out;
+        }
+
+        .social-links a:hover {
+            color: var(--warm-accent); /* **NEW: Social Icon Hover Color** */
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        /* Sections Base */
+        section {
+            padding: 80px 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        section:nth-child(even) {
+            /* **NEW: Radial Gradient Background for Skills Section** */
+            background: radial-gradient(circle at center, var(--cool-accent) 0%, var(--bg-color-dark) 70%, var(--bg-color-dark) 100%);
+        }
+
+        /* About Section */
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            max-width: 1000px;
+        }
+
+        .about-text {
+            flex: 2;
+            min-width: 300px;
+            text-align: justify;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.03);
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 8px 20px var(--shadow-strong); /* **NEW: Stronger Shadow on Hover** */
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            background-color: var(--bg-color-light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Initial subtle shadow */
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-12px) scale(1.03); /* **NEW: More pronounced lift and scale** */
+            box-shadow: 0 15px 30px rgba(0, 123, 255, 0.3); /* **NEW: Deeper shadow for 3D pop** */
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+        }
+        .skill-item:hover h3,
+        .skill-item:hover .skill-icon {
+            color: var(--text-color-light);
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
+            z-index: 0;
+        }
+
+        .skill-item:hover::before {
+            width: 200%;
+            height: 200%;
+            opacity: 1;
+        }
+
+
+        .skill-icon {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            transition: color 0.3s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--text-color-dark);
+            transition: color 0.3s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-bar {
+            background-color: #10e434;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: inset 0 1px 3px rgba(252, 2, 2, 0.1); /* **NEW: Inner Shadow for 3D bar** */
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: var(--accent-color);
+            width: 0;
+            border-radius: 5px;
+            transition: width 1.5s ease-out;
+            position: relative;
+            /* **NEW: Subtle gradient for skill bar fill** */
+            background: linear-gradient(to right, var(--accent-color), #34eb40);
+            box-shadow: 0 0 10px rgba(8, 228, 60, 0.5); /* **NEW: Initial glow for bar** */
+        }
+        /* Specific skill widths (adjust as needed) */
+        .skill-progress.html { width: 95%; }
+        .skill-progress.css { width: 90%; }
+        .skill-progress.js { width: 85%; }
+        .skill-progress.react { width: 80%; }
+        .skill-progress.node { width: 70%; }
+        .skill-progress.db { width: 75%; }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 15px;
+            background: rgba(40, 167, 69, 0.8);
+            border-radius: 5px;
+            filter: blur(8px);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            transform: translateX(100%);
+        }
+        .skill-progress.animate::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            background-color: var(--bg-color-light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px var(--shadow-strong); /* **NEW: Stronger shadow on hover** */
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(7, 120, 240, 0.952);
+            color: var(--text-color-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            color: var(--text-color-light);
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        .portfolio-overlay p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-links a {
+            color: var(--text-color-light);
+            margin: 0 10px;
+            font-size: 1.1rem;
+            border: 1px solid var(--text-color-light);
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .portfolio-links a:hover {
+            background-color: var(--text-color-light);
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            background-color: var(--bg-color-light);
+        }
+
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 280px;
+            text-align: left;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info p i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+        .contact-info p:hover i {
+            color: var(--accent-color);
+        }
+
+
+        .social-links-contact {
+            margin-top: 20px;
+        }
+
+        .social-links-contact a {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            color: var(--text-color-dark);
+            transition: color var(--transition-speed), transform 0.2s ease-out;
+        }
+
+        .social-links-contact a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            /* **NEW: Gradient Background for Contact Form** */
+            background: linear-gradient(145deg, #ad7575 0%, var(--bg-color-dark) 100%);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 20px var(--shadow-strong); /* **NEW: Stronger shadow for form** */
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05); /* Subtle border for definition */
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #396490;
+            border-radius: 5px;
+            font-family: var(--body-font);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed), background-color 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* **NEW: Inner shadow for input fields** */
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25), inset 0 1px 3px rgba(0,0,0,0.15);
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .contact-form button {
+            align-self: flex-start;
+        }
+
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #416f4c;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--text-color-dark);
+            color: var(--text-color-light);
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            /* **NEW: More subtle and integrated footer background** */
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); /* Dark blue-grey gradient */
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.3); /* Inner shadow for depth */
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 10%, transparent 70%); /* Lighter, subtle dots */
+            animation: pulse-bg 15s infinite ease-in-out;
+            z-index: 0;
+        }
+        @keyframes pulse-bg {
+            0% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+            100% { transform: scale(0.8) rotate(360deg); opacity: 0.5; }
+        }
+        .footer p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Reveal Animations (for scroll-based effects) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.5rem;
+            }
+
+            .hero-section {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 120px;
+                /* Adjust background for vertical layout */
+                background: linear-gradient(180deg, var(--gradient-start) 0%, var(--gradient-middle) 50%, var(--gradient-end) 100%);
+            }
+
+            .hero-content {
+                text-align: center;
+                min-width: unset;
+            }
+
+            .hero-image {
+                margin-bottom: 40px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text, .about-image {
+                min-width: unset;
+                text-align: center;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .contact-info p {
+                justify-content: center;
+            }
+
+            .contact-form button {
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                background-color: var(--bg-color-light);
+                box-shadow: var(--box-shadow);
+                padding: 20px 0;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .nav-links.active {
+                display: flex;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .skill-item {
+                padding: 20px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+
+            .social-links a {
+                font-size: 1.5rem;
+                margin-right: 15px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .portfolio-overlay h3 {
+                font-size: 1.4rem;
+            }
+
+            .portfolio-overlay p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">portfolio</a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <p class="hero-intro reveal"><strong>Hello, I'm</strong></p>
+                <h1 class="hero-title reveal">Sandeep Chaurasiya</h1>
+                <p class="hero-tagline reveal">A <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
+                <a href="#projects" class="btn btn-primary reveal">View My Work</a>
+                <div class="social-links reveal">
+                    <a href="https://www.linkedin.com/in/sandeep-chaurasiya-802192361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://sandeep991974.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/sandeepchaurasiya" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="hero-image reveal">
+                <img src="Snapchat-1159364564.jpg">
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <h2 class="section-title reveal">About Me</h2>
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <p>Hello! I'm <b> Sandeep Chaurasiya </b>, a passionate Web Developer and Web Designer based in Kanpur. I specialize in creating dynamic and user-friendly web applications.</p>
+                    <p>My journey into web development began recently, driven by a deep curiosity about how websites are built and function. As a fresher, I've worked on some basic projects that helped me understand the core principles of front-end development and user experience design. I'm excited to continue growing my skills and contribute to real-world projects.</p>
+                    <a href="resume.jpg" target="_blank" class="btn btn-secondary reveal">Download CV</a>
+                </div>
+                <div class="about-image reveal">
+                    <img src="1753547330709.jpg" alt="About Illustration">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <h2 class="section-title reveal">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item reveal">
+                    <i class="fab fa-html5 skill-icon"></i>
+                    <h3>HTML5</h3>
+                    <div class="skill-bar"><div class="skill-progress html"></div></div>
+                </div>
+                <div class="skill-item reveal">
+                    <i class="fab fa-css3-alt skill-icon"></i>
+                    <h3>CSS3</h3>
+                    <div class="skill-bar"><div class="skill-progress css"></div></div>
+                </div>
+                <div class="skill-item reveal">
+                    <i class="fab fa-js skill-icon"></i>
+                    <h3>JavaScript</h3>
+                    <div class="skill-bar"><div class="skill-progress js"></div></div>
+                </div>
+                <div class="skill-item reveal">
+                    <i class="fab fa-react skill-icon"></i>
+                    <h3>React</h3>
+                    <div class="skill-bar"><div class="skill-progress react"></div></div>
+                </div>
+                <div class="skill-item reveal">
+                    <i class="fab fa-node-js skill-icon"></i>
+                    <h3>Node.js</h3>
+                    <div class="skill-bar"><div class="skill-progress node"></div></div>
+                </div>
+                <div class="skill-item reveal">
+                    <i class="fas fa-database skill-icon"></i>
+                    <h3>Databases</h3>
+                    <div class="skill-bar"><div class="skill-progress db"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="project-section">
+            <h2 class="section-title reveal">My Projects</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item reveal">
+                    <img src="responsive.webp" alt="Project 1">
+                    <div class="portfolio-overlay">
+                        <h3>Project 1</h3>
+                        <p>Responsive Portfolio Website</p>
+                        <div class="portfolio-links">
+                            <a href="#" target="_blank" aria-label="Live Demo"><i class="fas fa-link"></i> Live Demo</a>
+                            <a href="https://sandeep991974.com" target="_blank" aria-label="GitHub Repository"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal">
+                    <img src="e comerce.jpg" alt="Project 2">
+                    <div class="portfolio-overlay">
+                        <h3>Project 2</h3>
+                        <p>E-commerce Website – A full-stack e-commerce site built with React for the frontend, Node.js and Express.js for the backend.</p>
+                        <div class="portfolio-links">
+                            <a href="#" target="_blank" aria-label="Live Demo"><i class="fas fa-link"></i> Live Demo</a>
+                            <a href="https://sandeep991974.com" target="_blank" aria-label="GitHub Repository"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal">
+                    <img src="task-management.png" alt="Project 3">
+                    <div class="portfolio-overlay">
+                        <h3>Project 3</h3>
+                        <p>Task Management Web App – A full-stack app using Express.js, MongoDB, and Node.js .</p>
+                        <div class="portfolio-links">
+                            <a href="#" target="_blank" aria-label="Live Demo"><i class="fas fa-link"></i> Live Demo</a>
+                            <a href="https://sandeep991974.com" target="_blank" aria-label="GitHub Repository"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal">
+                    <img src="task-management.png" alt="Project 4">
+                    <div class="portfolio-overlay">
+                        <h3>Project 4</h3>
+                        <p> Social Media Platform – A full-stack MERN app (MongoDB, Express.js, React, Node.js) allowing users to create profiles.</p>
+                        <div class="portfolio-links">
+                            <a href="#" target="_blank" aria-label="Live Demo"><i class="fas fa-link"></i> Live Demo</a>
+                            <a href="https://sandeep991974.com" target="_blank" aria-label="GitHub Repository"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2 class="section-title reveal">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info reveal">
+                    <p><i class="fas fa-envelope"></i> sandeep2425999@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9919742844</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kanpur 209217, Uttar Pradesh, India</p>
+                    <div class="social-links-contact">
+                        <a href="https://www.linkedin.com/in/sandeep-chaurasiya-802192361?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://sandeep991974.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/sandeepchaurasiya" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form reveal" id="contactForm">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 ,<b>Sandeep Chaurasiya</b>. All rights reserved.</p>
+
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Navbar Toggle for Mobile
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            const header = document.querySelector('.header'); // Get header for scroll effect
+
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                navToggle.classList.toggle('active');
+            });
+
+            // Close nav when a link is clicked (for mobile)
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    }
+                });
+            });
+
+            // Header Color/Shadow Change on Scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) { // Adjust scroll threshold as needed
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+
+            // 2. Smooth Scrolling for Navigation Links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Update active link in navbar (optional, but good for UX)
+                    document.querySelectorAll('.nav-links a').forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Set initial active link if page loads at a specific hash
+            const initialHash = window.location.hash;
+            if (initialHash) {
+                const initialLink = document.querySelector(`.nav-links a[href="${initialHash}"]`);
+                if (initialLink) {
+                    document.querySelectorAll('.nav-links a').forEach(item => item.classList.remove('active'));
+                    initialLink.classList.add('active');
+                }
+            } else {
+                // Set 'Home' as active if no hash is present on load
+                document.querySelector('.nav-links a[href="#hero"]').classList.add('active');
+            }
+
+
+            // 3. Typed Text Animation for Hero Section
+            const typedTextSpan = document.querySelector(".typed-text");
+            const phrases = ["Web Developer", "Web Designer", "Front-end Enthusiast", "Problem Solver"];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100; // milliseconds
+            const deletingSpeed = 60; // milliseconds
+            const delayBetweenPhrases = 1500; // milliseconds
+
+            function type() {
+                const currentPhrase = phrases[phraseIndex];
+                if (isDeleting) {
+                    typedTextSpan.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typedTextSpan.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    setTimeout(() => isDeleting = true, delayBetweenPhrases);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                }
+
+                const currentSpeed = isDeleting ? deletingSpeed : typingSpeed;
+                setTimeout(type, currentSpeed);
+            }
+
+            if (typedTextSpan) {
+                type(); // Start the typing animation
+            }
+
+
+            // 4. Reveal Elements on Scroll (Intersection Observer)
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Unobserve once animated
+                    }
+                });
+            }, {
+                threshold: 0.1, // Element is 10% visible
+                rootMargin: '0px 0px -50px 0px' // Start animation a bit earlier
+            });
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // 5. Skill Bar Animation (Trigger when skill section is visible)
+            const skillProgressBars = document.querySelectorAll('.skill-progress');
+            const skillsSection = document.getElementById('skills');
+
+            const skillObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        skillProgressBars.forEach(bar => {
+                            // Dynamically set width based on class to trigger CSS transition
+                            let widthValue;
+                            if (bar.classList.contains('html')) widthValue = '95%';
+                            else if (bar.classList.contains('css')) widthValue = '90%';
+                            else if (bar.classList.contains('js')) widthValue = '85%';
+                            else if (bar.classList.contains('react')) widthValue = '80%';
+                            else if (bar.classList.contains('node')) widthValue = '70%';
+                            else if (bar.classList.contains('db')) widthValue = '75%';
+                            else widthValue = '0%'; // Fallback
+
+                            bar.style.width = widthValue;
+
+                            // After the main width transition, add the 'animate' class for glow
+                            setTimeout(() => {
+                                bar.classList.add('animate');
+                            }, 1500); // Wait for the width transition to finish (1.5s as per CSS)
+                        });
+                        observer.unobserve(entry.target); // Unobserve once animated
+                    }
+                });
+            }, {
+                threshold: 0.5 // Trigger when 50% of the skills section is visible
+            });
+
+            if (skillsSection) {
+                skillObserver.observe(skillsSection);
+            }
+
+            // 6. Contact Form Submission (Example - replace with actual backend integration)
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    formMessage.style.display = 'none'; // Hide previous messages
+
+                    const formData = new FormData(contactForm);
+                    // In a real application, you would send this data to a backend server.
+                    // For a static site, you might use a service like Formspree or Netlify Forms.
+
+                    try {
+                        // Simulate an API call
+                        const response = await new Promise(resolve => setTimeout(() => {
+                            // Simulate success or failure
+                            const success = Math.random() > 0.3; // 70% chance of success
+                            resolve({ success: success });
+                        }, 1500));
+
+                        if (response.success) {
+                            formMessage.textContent = "Thank you for your message! I'll get back to you soon.";
+                            formMessage.classList.remove('error');
+                            formMessage.classList.add('success');
+                            contactForm.reset();
+                        } else {
+                            formMessage.textContent = "Oops! Something went wrong. Please try again.";
+                            formMessage.classList.remove('success');
+                            formMessage.classList.add('error');
+                        }
+                    } catch (error) {
+                        console.error("Form submission error:", error);
+                        formMessage.textContent = "An unexpected error occurred. Please try again.";
+                        formMessage.classList.remove('success');
+                        formMessage.classList.add('error');
+                    } finally {
+                        formMessage.style.display = 'block';
+                    }
+                });
+            }
+
+            // 7. Active Nav Link on Scroll
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('.nav-links li a');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 100 && pageYOffset < sectionTop + sectionHeight - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLi.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
